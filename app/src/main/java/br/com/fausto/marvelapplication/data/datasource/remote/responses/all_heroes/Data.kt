@@ -1,4 +1,4 @@
-package br.com.fausto.marvelapplication.data.datasource.responses.hero
+package br.com.fausto.marvelapplication.data.datasource.remote.responses.all_heroes
 
 data class Data(
     var count: Int?,
