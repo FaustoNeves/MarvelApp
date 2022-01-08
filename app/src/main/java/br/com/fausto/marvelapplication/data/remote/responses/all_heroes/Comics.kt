@@ -1,4 +1,4 @@
-package br.com.fausto.marvelapplication.data.datasource.remote.responses.all_heroes
+package br.com.fausto.marvelapplication.data.remote.responses.all_heroes
 
 data class Comics(
     var available: Int?,

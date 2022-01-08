@@ -1,14 +1,11 @@
 package br.com.fausto.marvelapplication.ui.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.fausto.marvelapplication.data.datasource.remote.responses.all_heroes.FetchAllMarvelHeroesResponse
 import br.com.fausto.marvelapplication.data.dtos.MarvelHeroDTO
+import br.com.fausto.marvelapplication.data.remote.helper.NetworkResponse
 import br.com.fausto.marvelapplication.data.repository.IMarvelRepository
-import br.com.fausto.marvelapplication.ui.utils.Resource
-import br.com.fausto.marvelapplication.ui.utils.Status
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,40 +16,39 @@ class MainScreenViewModel @Inject constructor(
 ) :
     ViewModel() {
 
-    val marvelHeroesList = MutableLiveData<Resource<FetchAllMarvelHeroesResponse>>()
+    val fetchHeroesStatus = MutableLiveData(false)
     val marvelHeroesDTOList = mutableListOf<MarvelHeroDTO>()
+    val requestError = MutableLiveData<String>()
 
     fun fetchHeroes(firstChar: String) {
-        marvelHeroesList.value = Resource(Status.LOADING, null, null)
-        try {
-            Log.e("first time going", marvelHeroesList.value!!.status.toString())
-
-        } catch (e: Exception) {
-
-        }
-        marvelHeroesDTOList.clear()
         viewModelScope.launch {
-            val response = repository.fetchHeroes(firstChar)
-            if (response.code == 200) {
-                response.data!!.results!!.forEach {
-                    marvelHeroesDTOList.add(
-                        MarvelHeroDTO(
-                            it.id!!,
-                            it.description!!,
-                            it.name!!,
-                            it.thumbnail!!.path!!
+            when (val response = repository.fetchHeroes(firstChar)) {
+                is NetworkResponse.Success -> {
+                    marvelHeroesDTOList.clear()
+                    response.body.data!!.results!!.forEach {
+                        marvelHeroesDTOList.add(
+                            MarvelHeroDTO(
+                                it.id!!,
+                                it.description!!,
+                                it.name!!,
+                                it.thumbnail!!.path!!
+                            )
                         )
-                    )
+                    }
+                    fetchHeroesStatus.value = true
                 }
-                marvelHeroesList.postValue(
-                    Resource(
-                        Status.SUCCESS,
-                        response,
-                        "Success"
-                    )
-                )
-            } else {
-                marvelHeroesList.postValue(Resource(Status.ERROR, null, "error"))
+                is NetworkResponse.ApiError -> {
+                    requestError.postValue("Server down. Try again later")
+                }
+                is NetworkResponse.NoResultsError -> {
+                    requestError.postValue("No results found")
+                }
+                is NetworkResponse.NetworkError -> {
+                    requestError.postValue("Request failed")
+                }
+                is NetworkResponse.UnknownError -> {
+                    requestError.postValue("Unknown error")
+                }
             }
         }
     }

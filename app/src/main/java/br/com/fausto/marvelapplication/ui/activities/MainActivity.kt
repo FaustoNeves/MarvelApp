@@ -1,7 +1,6 @@
 package br.com.fausto.marvelapplication.ui.activities
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -15,7 +14,6 @@ import br.com.fausto.marvelapplication.R
 import br.com.fausto.marvelapplication.data.dtos.MarvelHeroDTO
 import br.com.fausto.marvelapplication.ui.adapter.MarvelHeroesAdapter
 import br.com.fausto.marvelapplication.ui.utils.NetworkStateHelper
-import br.com.fausto.marvelapplication.ui.utils.Status
 import br.com.fausto.marvelapplication.ui.viewmodels.MainScreenViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -49,37 +47,21 @@ class MainActivity : AppCompatActivity() {
         })
 
         button.setOnClickListener {
+            progressBar.visibility = View.VISIBLE
             GlobalScope.launch(Dispatchers.Main) {
-                viewModel.marvelHeroesList.observe(this@MainActivity, {
-                    when (it.status) {
-                        Status.LOADING -> {
-                            Log.e("status", "LOADING")
-                            progressBar.visibility = View.VISIBLE
-                        }
-                        Status.SUCCESS -> {
-                            Log.e("success status", "abidjama")
-                            progressBar.visibility = View.INVISIBLE
-                            Log.e("oi size", viewModel.marvelHeroesDTOList.size.toString())
-                            Log.e(
-                                "live data size",
-                                viewModel.marvelHeroesList.value!!.data!!.data!!.results!!.size.toString()
-                            )
-                            viewModel.marvelHeroesDTOList.forEach { it ->
-                                Log.e("oi for each", it.name)
-                            }
-                            setupRecyclerview(viewModel.marvelHeroesDTOList)
-                        }
-                        Status.ERROR -> {
-                            Log.e("error status", "abidjama")
-                            Toast.makeText(this@MainActivity, "Deu ruim", Toast.LENGTH_SHORT).show()
-                        }
-                    }
+                viewModel.fetchHeroesStatus.observe(this@MainActivity, {
+                    progressBar.visibility = View.INVISIBLE
+                    setupRecyclerview(viewModel.marvelHeroesDTOList)
                 })
                 if (isConnected) {
                     viewModel.fetchHeroes(editText.text.toString())
                 }
             }
         }
+
+        viewModel.requestError.observe(this@MainActivity, {
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+        })
     }
 
     private fun setupRecyclerview(marvelHeroesDTOList: MutableList<MarvelHeroDTO>) {

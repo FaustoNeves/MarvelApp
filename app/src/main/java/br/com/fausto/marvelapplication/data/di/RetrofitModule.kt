@@ -1,6 +1,7 @@
 package br.com.fausto.marvelapplication.data.di
 
-import br.com.fausto.marvelapplication.data.datasource.remote.retrofit.MarvelRestAPI
+import br.com.fausto.marvelapplication.data.remote.helper.NetworkResponseAdapterFactory
+import br.com.fausto.marvelapplication.data.remote.retrofit.MarvelRestAPI
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,6 +19,7 @@ object RetrofitModule {
     fun providesMarvelAPI(): MarvelRestAPI =
         Retrofit.Builder()
             .baseUrl("http://gateway.marvel.com/v1/public/")
+            .addCallAdapterFactory(NetworkResponseAdapterFactory())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(MarvelRestAPI::class.java)
