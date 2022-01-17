@@ -27,20 +27,19 @@ internal class NetworkResponseCall<S : Any, E : Any>(
                             this@NetworkResponseCall,
                             Response.success(NetworkResponse.Success(body))
                         )
-                    } else {
-                        // Response is successful but the body is null
-                        callback.onResponse(
-                            this@NetworkResponseCall,
-                            Response.success(NetworkResponse.NoResultsError(null))
-                        )
                     }
                 } else {
                     val errorBody = when {
-                        error == null -> null
+                        error == null -> {
+                            Response.success(NetworkResponse.UnknownError(null))
+                            null
+                        }
                         error.contentLength() == 0L -> null
                         else -> try {
+                            Response.success(NetworkResponse.UnknownError(null))
                             errorConverter.convert(error)
                         } catch (ex: Exception) {
+                            Response.success(NetworkResponse.UnknownError(null))
                             null
                         }
                     }

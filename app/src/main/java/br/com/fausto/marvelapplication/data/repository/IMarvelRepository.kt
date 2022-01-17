@@ -5,5 +5,5 @@ import br.com.fausto.marvelapplication.data.remote.responses.all_heroes.AllMarve
 import br.com.fausto.marvelapplication.data.remote.responses.error.ErrorResponse
 
 interface IMarvelRepository {
-    suspend fun fetchHeroes(firstChar: String): NetworkResponse<AllMarvelHeroesResponse, ErrorResponse>
+    suspend fun fetchHeroes(searchText: String): NetworkResponse<AllMarvelHeroesResponse, ErrorResponse>
 }

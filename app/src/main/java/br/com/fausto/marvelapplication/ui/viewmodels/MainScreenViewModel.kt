@@ -18,11 +18,11 @@ class MainScreenViewModel @Inject constructor(
 
     val fetchHeroesStatus = MutableLiveData(false)
     val marvelHeroesDTOList = mutableListOf<MarvelHeroDTO>()
-    val requestError = MutableLiveData<String>()
+    val errorMessage = MutableLiveData<String>()
 
-    fun fetchHeroes(firstChar: String) {
+    fun fetchHeroes(searchText: String) {
         viewModelScope.launch {
-            when (val response = repository.fetchHeroes(firstChar)) {
+            when (val response = repository.fetchHeroes(searchText)) {
                 is NetworkResponse.Success -> {
                     marvelHeroesDTOList.clear()
                     response.body.data!!.results!!.forEach {
@@ -36,18 +36,18 @@ class MainScreenViewModel @Inject constructor(
                         )
                     }
                     fetchHeroesStatus.value = true
+                    if (response.body.data!!.count == 0) {
+                        errorMessage.postValue("No results found")
+                    }
                 }
                 is NetworkResponse.ApiError -> {
-                    requestError.postValue("Server down. Try again later")
-                }
-                is NetworkResponse.NoResultsError -> {
-                    requestError.postValue("No results found")
+                    errorMessage.postValue("Empty search field")
                 }
                 is NetworkResponse.NetworkError -> {
-                    requestError.postValue("Request failed")
+                    errorMessage.postValue("Check your internet connection")
                 }
                 is NetworkResponse.UnknownError -> {
-                    requestError.postValue("Unknown error")
+                    errorMessage.postValue("Unauthorized request")
                 }
             }
         }

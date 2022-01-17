@@ -1,12 +1,14 @@
 package br.com.fausto.marvelapplication.ui.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.fausto.marvelapplication.R
 import br.com.fausto.marvelapplication.data.dtos.MarvelHeroDTO
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_item_hero.view.*
 
 class MarvelHeroesAdapter(
@@ -31,11 +33,14 @@ class MarvelHeroesAdapter(
 
     inner class MarvelHeroesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(marvelHeroDTO: MarvelHeroDTO) {
+
             itemView.hero_name.text = marvelHeroDTO.name
-            itemView.hero_description.text = marvelHeroDTO.description
             itemView.setOnClickListener {
                 clickListener(marvelHeroDTO.id)
             }
+            Log.e("@@@", marvelHeroDTO.imagePath)
+            Picasso.get().load(marvelHeroDTO.imagePath + "/portrait_uncanny.jpg")
+                .into(itemView.hero_image)
         }
     }
 }

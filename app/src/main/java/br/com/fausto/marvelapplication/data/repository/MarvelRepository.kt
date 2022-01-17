@@ -11,7 +11,7 @@ class MarvelRepository @Inject constructor(
 ) :
     IMarvelRepository {
 
-    override suspend fun fetchHeroes(firstChar: String): NetworkResponse<AllMarvelHeroesResponse, ErrorResponse> {
-        return marvelRestAPI.getAllHeroes(firstChar = firstChar)
+    override suspend fun fetchHeroes(searchText: String): NetworkResponse<AllMarvelHeroesResponse, ErrorResponse> {
+        return marvelRestAPI.getAllHeroes(searchText = searchText)
     }
 }

@@ -14,6 +14,7 @@ interface MarvelRestAPI {
         @Query("ts") ts: String = BuildConfig.API_TS,
         @Query("apikey") key: String = BuildConfig.API_KEY,
         @Query("hash") hash: String = BuildConfig.API_HASH,
-        @Query("nameStartsWith") firstChar: String
+        @Query("nameStartsWith") searchText: String,
+        @Query("limit") limit: Int = 100
     ): NetworkResponse<AllMarvelHeroesResponse, ErrorResponse>
 }
