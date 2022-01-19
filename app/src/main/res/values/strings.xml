@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MarvelApplication</string>
+    <string name="search">search</string>
 </resources>

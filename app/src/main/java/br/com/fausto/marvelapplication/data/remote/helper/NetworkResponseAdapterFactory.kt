@@ -35,6 +35,6 @@ class NetworkResponseAdapterFactory : CallAdapter.Factory() {
         val errorBodyConverter =
             retrofit.nextResponseBodyConverter<Any>(null, errorBodyType, annotations)
 
-        return NetworkResponseAdapter<Any, Any>(successBodyType, errorBodyConverter)
+        return NetworkResponseCallAdapter<Any, Any>(successBodyType, errorBodyConverter)
     }
 }
