@@ -2,18 +2,15 @@ package br.com.fausto.marvelapplication.ui.activities
 
 import android.os.Bundle
 import android.view.View
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import br.com.fausto.marvelapplication.R
 import br.com.fausto.marvelapplication.data.dtos.MarvelHeroDTO
+import br.com.fausto.marvelapplication.databinding.ActivityMainBinding
 import br.com.fausto.marvelapplication.ui.adapter.MarvelHeroesAdapter
 import br.com.fausto.marvelapplication.ui.viewmodels.MainScreenViewModel
-import com.google.android.material.textfield.TextInputEditText
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -21,41 +18,33 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var progressBar: ProgressBar
-    private lateinit var textInput: TextInputEditText
+    private lateinit var screenBind: ActivityMainBinding
     private val viewModel: MainScreenViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        progressBar = findViewById(R.id.progressBar)
-
-        recyclerView = findViewById(R.id.all_marvel_heroes_rc)
-
-        textInput = findViewById(R.id.search_text_input_edit_text)
+        screenBind = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(screenBind.root)
 
         initialSetup()
         searchMarvelHero()
     }
 
-
     private fun initialSetup() {
         manageBarProgress(true)
-        recyclerView.layoutManager = GridLayoutManager(this, 2)
+        screenBind.marvelHeroesRv.layoutManager = GridLayoutManager(this, 2)
 
         GlobalScope.launch(Dispatchers.Main) {
-            viewModel.fetchHeroesStatus.observe(this@MainActivity, {
+            viewModel.fetchHeroesStatus.observe(this@MainActivity) {
                 manageBarProgress(false)
                 setupRecyclerviewContent(viewModel.marvelHeroesDTOList)
-            })
+            }
         }
 
-        viewModel.errorMessage.observe(this@MainActivity, {
+        viewModel.errorMessage.observe(this@MainActivity) {
             manageBarProgress(false)
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-        })
+        }
 
         viewModel.fetchHeroes("do")
     }
@@ -64,19 +53,18 @@ class MainActivity : AppCompatActivity() {
         val marvelHeroesAdapter = MarvelHeroesAdapter(marvelHeroesDTOList, this) {
             Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
         }
-        recyclerView.adapter = marvelHeroesAdapter
-        marvelHeroesAdapter.notifyDataSetChanged()
+        screenBind.marvelHeroesRv.adapter = marvelHeroesAdapter
     }
 
     private fun searchMarvelHero() {
-        textInput.addTextChangedListener {
+        screenBind.searchTextInputEditText.addTextChangedListener {
             if (it.toString().isNotEmpty())
                 viewModel.fetchHeroes(it.toString())
         }
     }
 
     private fun manageBarProgress(isActive: Boolean) {
-        if (isActive) progressBar.visibility = View.VISIBLE
-        else progressBar.visibility = View.INVISIBLE
+        if (isActive) screenBind.progressBar.visibility = View.VISIBLE
+        else screenBind.progressBar.visibility = View.INVISIBLE
     }
 }
