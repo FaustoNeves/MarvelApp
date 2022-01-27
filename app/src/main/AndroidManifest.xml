@@ -17,7 +17,7 @@
         android:theme="@style/Theme.MarvelApplication"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.activities.MainActivity"
+            android:name=".ui.activities.BaseActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,4 +26,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

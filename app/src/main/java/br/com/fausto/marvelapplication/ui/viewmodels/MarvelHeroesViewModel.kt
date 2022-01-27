@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainScreenViewModel @Inject constructor(
+class MarvelHeroesViewModel @Inject constructor(
     private val repository: IMarvelRepository
 ) :
     ViewModel() {
@@ -37,7 +37,7 @@ class MainScreenViewModel @Inject constructor(
                     }
                     fetchHeroesStatus.value = true
                     if (response.body.data!!.count == 0) {
-                        errorMessage.postValue("No results found")
+                        errorMessage.postValue("No results found for ")
                     }
                 }
                 is NetworkResponse.ApiError -> {
