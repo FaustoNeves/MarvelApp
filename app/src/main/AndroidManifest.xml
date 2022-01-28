@@ -17,7 +17,7 @@
         android:theme="@style/Theme.MarvelApplication"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.activities.BaseActivity"
+            android:name=".ui.screens.BaseActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

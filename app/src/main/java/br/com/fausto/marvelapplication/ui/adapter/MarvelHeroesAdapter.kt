@@ -7,13 +7,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.fausto.marvelapplication.R
 import br.com.fausto.marvelapplication.data.dtos.MarvelHeroDTO
+import br.com.fausto.marvelapplication.ui.screens.constants.GeneralConstants
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_item_hero.view.*
 
 class MarvelHeroesAdapter(
     private val listOfMarvelHeroes: List<MarvelHeroDTO>,
     private val context: Context,
-    private val clickListener: ((Int) -> Unit)?
+    private val clickListener: ((Int, String, String) -> Unit)
 
 ) : RecyclerView.Adapter<MarvelHeroesAdapter.MarvelHeroesViewHolder>() {
 
@@ -35,9 +36,13 @@ class MarvelHeroesAdapter(
 
             itemView.hero_name.text = marvelHeroDTO.name
             itemView.setOnClickListener {
-                clickListener?.let { view -> view(marvelHeroDTO.id) }
+                clickListener(
+                    marvelHeroDTO.id,
+                    marvelHeroDTO.imagePath + GeneralConstants.THUMBNAIL_IMAGE_TYPE,
+                    marvelHeroDTO.name
+                )
             }
-            Picasso.get().load(marvelHeroDTO.imagePath + "/portrait_uncanny.jpg")
+            Picasso.get().load(marvelHeroDTO.imagePath + GeneralConstants.CHARACTER_THUMBNAIL_SIZE+GeneralConstants.THUMBNAIL_IMAGE_TYPE)
                 .into(itemView.hero_image)
         }
     }

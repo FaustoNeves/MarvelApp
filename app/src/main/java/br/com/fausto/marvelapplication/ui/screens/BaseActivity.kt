@@ -1,8 +1,9 @@
-package br.com.fausto.marvelapplication.ui.activities
+package br.com.fausto.marvelapplication.ui.screens
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import br.com.fausto.marvelapplication.R
+import br.com.fausto.marvelapplication.ui.screens.constants.NavigationConstants
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -16,7 +17,7 @@ class BaseActivity : AppCompatActivity() {
     private fun initMarvelHeroesFragment() {
         supportFragmentManager.beginTransaction()
             .add(R.id.fragment_container_view, MarvelHeroesFragment())
-            .addToBackStack("marvel_heroes_fragment")
+            .addToBackStack(NavigationConstants.MARVEL_HEROES_FRAGMENT)
             .commit()
     }
 
