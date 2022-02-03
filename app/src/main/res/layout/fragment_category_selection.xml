@@ -1,19 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:fillViewport="true"
     tools:context=".ui.screens.CategorySelectionFragment">
 
-    <TextView
-        android:id="@+id/character_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        android:orientation="vertical"
+        tools:context=".ui.screens.CategorySelectionFragment">
 
-    <TextView
-        android:id="@+id/image_path"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/character_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bebas_neue_regular"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="48sp"
+            tools:text="Abomination" />
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/default_character_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minWidth="300sp"
+            android:minHeight="300sp"
+            tools:src="@drawable/default_image_teste" />
+
+        <TextView
+            android:id="@+id/character_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20sp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            tools:text="Formerly known as Emil Blonsky, a spy of Soviet Yugoslavian origin working for the KGB, the Abomination gained his powers after receiving a dose of gamma radiation similar to that which transformed Bruce Banner into the incredible Hulk." />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/categories_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/comics_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="@string/comics"
+                app:layout_constraintBottom_toTopOf="@+id/events_button"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/events_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="@string/events"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/series_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="68dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="@string/series"
+                app:layout_constraintBottom_toTopOf="@+id/stories_button"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/stories_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="68dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:text="@string/stories"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</ScrollView>

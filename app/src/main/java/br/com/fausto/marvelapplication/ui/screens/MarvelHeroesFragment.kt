@@ -66,8 +66,14 @@ class MarvelHeroesFragment : Fragment() {
             MarvelHeroesAdapter(
                 marvelHeroesDTOList,
                 requireContext()
-            ) { characterId, imagePath, characterName ->
-                setupCategoriesScreenNavigation(characterId, imagePath, characterName)
+            ) { characterId, imagePath, characterName, characterDescription, urlDetail ->
+                setupCategoriesScreenNavigation(
+                    characterId,
+                    imagePath,
+                    characterName,
+                    characterDescription,
+                    urlDetail
+                )
             }
         marvel_heroes_rv.adapter = marvelHeroesAdapter
     }
@@ -84,12 +90,16 @@ class MarvelHeroesFragment : Fragment() {
     private fun setupCategoriesScreenNavigation(
         characterId: Int,
         imagePath: String,
-        characterName: String
+        characterName: String,
+        characterDescription: String,
+        urlDetail: String
     ) {
         val arguments = Bundle()
         arguments.putInt(BundleConstants.CHARACTER_ID, characterId)
         arguments.putString(BundleConstants.IMAGE_PATH, imagePath)
         arguments.putString(BundleConstants.CHARACTER_NAME, characterName)
+        arguments.putString(BundleConstants.CHARACTER_DESCRIPTION, characterDescription)
+        arguments.putString(BundleConstants.URL_DETAIL, urlDetail)
         val categorySelectionFragment = CategorySelectionFragment()
         categorySelectionFragment.arguments = arguments
         parentFragmentManager.beginTransaction()

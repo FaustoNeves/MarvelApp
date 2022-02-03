@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.list_item_hero.view.*
 class MarvelHeroesAdapter(
     private val listOfMarvelHeroes: List<MarvelHeroDTO>,
     private val context: Context,
-    private val clickListener: ((Int, String, String) -> Unit)
+    private val clickListener: ((Int, String, String, String, String) -> Unit)
 
 ) : RecyclerView.Adapter<MarvelHeroesAdapter.MarvelHeroesViewHolder>() {
 
@@ -38,8 +38,10 @@ class MarvelHeroesAdapter(
             itemView.setOnClickListener {
                 clickListener(
                     marvelHeroDTO.id,
-                    marvelHeroDTO.imagePath + GeneralConstants.THUMBNAIL_IMAGE_TYPE,
-                    marvelHeroDTO.name
+                    marvelHeroDTO.imagePath + GeneralConstants.THUMBNAIL_FULL_SIZE,
+                    marvelHeroDTO.name,
+                    marvelHeroDTO.description,
+                    marvelHeroDTO.urlDetail
                 )
             }
             Picasso.get().load(marvelHeroDTO.imagePath + GeneralConstants.CHARACTER_THUMBNAIL_SIZE+GeneralConstants.THUMBNAIL_IMAGE_TYPE)

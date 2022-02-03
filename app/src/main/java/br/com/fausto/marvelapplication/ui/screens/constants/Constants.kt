@@ -4,8 +4,9 @@ class GeneralConstants {
     companion object {
         const val MARVEL_OFFICIAL_WEBSITE_CHARACTERS = "https://www.marvel.com/characters"
         const val CHARACTER_THUMBNAIL_SIZE = "/portrait_uncanny"
-        const val INITIAL_QUERY_PARAMETER_SEARCH = "do"
+        const val INITIAL_QUERY_PARAMETER_SEARCH = "A"
         const val THUMBNAIL_IMAGE_TYPE = ".jpg"
+        const val THUMBNAIL_FULL_SIZE = "/detail.jpg"
     }
 }
 
@@ -18,8 +19,10 @@ class NavigationConstants {
 
 class BundleConstants {
     companion object {
+        const val URL_DETAIL = "urlDetail"
         const val CHARACTER_ID = "characterId"
         const val IMAGE_PATH = "imagePath"
         const val CHARACTER_NAME = "characterName"
+        const val CHARACTER_DESCRIPTION = "characterDescription"
     }
 }

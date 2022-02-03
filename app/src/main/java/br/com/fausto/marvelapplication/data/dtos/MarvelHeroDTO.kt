@@ -5,4 +5,5 @@ data class MarvelHeroDTO(
     val description: String,
     val name: String,
     val imagePath: String,
+    val urlDetail: String,
 )

@@ -26,14 +26,17 @@ class MarvelHeroesViewModel @Inject constructor(
                 is NetworkResponse.Success -> {
                     marvelHeroesDTOList.clear()
                     response.body.data!!.results!!.forEach {
-                        marvelHeroesDTOList.add(
-                            MarvelHeroDTO(
-                                it.id!!,
-                                it.description!!,
-                                it.name!!,
-                                it.thumbnail!!.path!!
+                        if (!it.thumbnail!!.path!!.contains("image_not_available")) {
+                            marvelHeroesDTOList.add(
+                                MarvelHeroDTO(
+                                    it.id!!,
+                                    it.description!!.ifEmpty { "No description available" },
+                                    it.name!!,
+                                    it.thumbnail!!.path!!,
+                                    it.urls!![0].url!!
+                                )
                             )
-                        )
+                        }
                     }
                     fetchHeroesStatus.value = true
                     if (response.body.data!!.count == 0) {
