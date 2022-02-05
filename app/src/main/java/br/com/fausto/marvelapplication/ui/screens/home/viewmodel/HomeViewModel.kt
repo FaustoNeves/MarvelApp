@@ -1,4 +1,4 @@
-package br.com.fausto.marvelapplication.ui.viewmodels
+package br.com.fausto.marvelapplication.ui.screens.home.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MarvelHeroesViewModel @Inject constructor(
+class HomeViewModel @Inject constructor(
     private val repository: IMarvelRepository
 ) :
     ViewModel() {

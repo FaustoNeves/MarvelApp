@@ -6,13 +6,15 @@
         <entry key="..\:/AndroidStudioProjects/MarvelApplication/app/src/main/res/drawable/border_dark_background.xml" value="0.1345" />
         <entry key="..\:/AndroidStudioProjects/MarvelApplication/app/src/main/res/drawable/border_red_background.xml" value="0.2995" />
         <entry key="..\:/AndroidStudioProjects/MarvelApplication/app/src/main/res/drawable/ripple_character_background.xml" value="0.3195" />
+        <entry key="..\:/AndroidStudioProjects/MarvelApplication/app/src/main/res/font/archivo_black.xml" value="0.35" />
         <entry key="..\:/AndroidStudioProjects/MarvelApplication/app/src/main/res/layout/activity_base.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/MarvelApplication/app/src/main/res/layout/activity_main.xml" value="0.3125" />
         <entry key="..\:/AndroidStudioProjects/MarvelApplication/app/src/main/res/layout/fragment_blank.xml" value="0.14114583333333333" />
-        <entry key="..\:/AndroidStudioProjects/MarvelApplication/app/src/main/res/layout/fragment_category_selection.xml" value="0.19" />
+        <entry key="..\:/AndroidStudioProjects/MarvelApplication/app/src/main/res/layout/fragment_category_selection.xml" value="0.33" />
         <entry key="..\:/AndroidStudioProjects/MarvelApplication/app/src/main/res/layout/fragment_marvel_heroes.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/MarvelApplication/app/src/main/res/layout/fragment_selection_category.xml" value="0.3125" />
-        <entry key="..\:/AndroidStudioProjects/MarvelApplication/app/src/main/res/layout/list_item_hero.xml" value="0.43737166324435317" />
+        <entry key="..\:/AndroidStudioProjects/MarvelApplication/app/src/main/res/layout/list_item_category.xml" value="0.4979253112033195" />
+        <entry key="..\:/AndroidStudioProjects/MarvelApplication/app/src/main/res/layout/list_item_hero.xml" value="0.1" />
         <entry key="..\:/AndroidStudioProjects/MarvelApplication/app/src/main/res/xml/network_security_config.xml" value="0.3125" />
       </map>
     </option>

@@ -1,4 +1,4 @@
-package br.com.fausto.marvelapplication.ui.screens
+package br.com.fausto.marvelapplication.ui.screens.home.fragment
 
 import android.content.Intent
 import android.net.Uri
@@ -12,27 +12,28 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import br.com.fausto.marvelapplication.R
 import br.com.fausto.marvelapplication.data.dtos.MarvelHeroDTO
-import br.com.fausto.marvelapplication.ui.adapter.MarvelHeroesAdapter
-import br.com.fausto.marvelapplication.ui.screens.constants.BundleConstants
-import br.com.fausto.marvelapplication.ui.screens.constants.GeneralConstants
-import br.com.fausto.marvelapplication.ui.screens.constants.NavigationConstants
-import br.com.fausto.marvelapplication.ui.viewmodels.MarvelHeroesViewModel
+import br.com.fausto.marvelapplication.ui.screens.categoryselection.fragment.CategorySelectionFragment
+import br.com.fausto.marvelapplication.ui.constants.BundleConstants
+import br.com.fausto.marvelapplication.ui.constants.GeneralConstants
+import br.com.fausto.marvelapplication.ui.constants.NavigationConstants
+import br.com.fausto.marvelapplication.ui.screens.home.adapter.HomeAdapter
+import br.com.fausto.marvelapplication.ui.screens.home.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_marvel_heroes.*
+import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class MarvelHeroesFragment : Fragment() {
-    private val viewModel: MarvelHeroesViewModel by viewModels()
+class HomeFragment : Fragment() {
+    private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_marvel_heroes, container, false)
+        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -63,7 +64,7 @@ class MarvelHeroesFragment : Fragment() {
     private fun setupRecyclerviewContent(marvelHeroesDTOList: MutableList<MarvelHeroDTO>) {
         marvel_heroes_rv.layoutManager = GridLayoutManager(context, 2)
         val marvelHeroesAdapter =
-            MarvelHeroesAdapter(
+            HomeAdapter(
                 marvelHeroesDTOList,
                 requireContext()
             ) { characterId, imagePath, characterName, characterDescription, urlDetail ->

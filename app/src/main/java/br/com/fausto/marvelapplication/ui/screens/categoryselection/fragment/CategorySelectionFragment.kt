@@ -1,13 +1,12 @@
-package br.com.fausto.marvelapplication.ui.screens
+package br.com.fausto.marvelapplication.ui.screens.categoryselection.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import br.com.fausto.marvelapplication.R
-import br.com.fausto.marvelapplication.ui.screens.constants.BundleConstants
+import br.com.fausto.marvelapplication.ui.constants.BundleConstants
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_category_selection.*
 

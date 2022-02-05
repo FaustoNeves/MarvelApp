@@ -1,4 +1,4 @@
-package br.com.fausto.marvelapplication.ui.screens.constants
+package br.com.fausto.marvelapplication.ui.constants
 
 class GeneralConstants {
     companion object {

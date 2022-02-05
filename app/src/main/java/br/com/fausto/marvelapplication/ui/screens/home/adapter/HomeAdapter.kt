@@ -1,4 +1,4 @@
-package br.com.fausto.marvelapplication.ui.adapter
+package br.com.fausto.marvelapplication.ui.screens.home.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,31 +7,31 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.fausto.marvelapplication.R
 import br.com.fausto.marvelapplication.data.dtos.MarvelHeroDTO
-import br.com.fausto.marvelapplication.ui.screens.constants.GeneralConstants
+import br.com.fausto.marvelapplication.ui.constants.GeneralConstants
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_item_hero.view.*
 
-class MarvelHeroesAdapter(
-    private val listOfMarvelHeroes: List<MarvelHeroDTO>,
+class HomeAdapter(
+    private val marvelHeroesList: List<MarvelHeroDTO>,
     private val context: Context,
     private val clickListener: ((Int, String, String, String, String) -> Unit)
 
-) : RecyclerView.Adapter<MarvelHeroesAdapter.MarvelHeroesViewHolder>() {
+) : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarvelHeroesViewHolder {
-        return MarvelHeroesViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
+        return HomeViewHolder(
             LayoutInflater.from(context).inflate(R.layout.list_item_hero, parent, false)
         )
     }
 
-    override fun onBindViewHolder(holder: MarvelHeroesViewHolder, position: Int) {
-        holder.bind(listOfMarvelHeroes[position])
+    override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
+        holder.bind(marvelHeroesList[position])
     }
 
     override fun getItemCount() =
-        listOfMarvelHeroes.size
+        marvelHeroesList.size
 
-    inner class MarvelHeroesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(marvelHeroDTO: MarvelHeroDTO) {
 
             itemView.hero_name.text = marvelHeroDTO.name
@@ -44,7 +44,8 @@ class MarvelHeroesAdapter(
                     marvelHeroDTO.urlDetail
                 )
             }
-            Picasso.get().load(marvelHeroDTO.imagePath + GeneralConstants.CHARACTER_THUMBNAIL_SIZE+GeneralConstants.THUMBNAIL_IMAGE_TYPE)
+            Picasso.get()
+                .load(marvelHeroDTO.imagePath + GeneralConstants.CHARACTER_THUMBNAIL_SIZE + GeneralConstants.THUMBNAIL_IMAGE_TYPE)
                 .into(itemView.hero_image)
         }
     }
