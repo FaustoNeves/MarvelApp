@@ -19,13 +19,7 @@ class CategorySelectionFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            characterId = it.getInt(BundleConstants.CHARACTER_ID)
-            imagePath = it.getString(BundleConstants.IMAGE_PATH)
-            characterName = it.getString(BundleConstants.CHARACTER_NAME)
-            characterDescription = it.getString(BundleConstants.CHARACTER_DESCRIPTION)
-            urlDetail = it.getString(BundleConstants.URL_DETAIL)
-        }
+        retrieveArguments()
     }
 
     override fun onCreateView(
@@ -38,6 +32,20 @@ class CategorySelectionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupScreenContent()
+    }
+
+    private fun retrieveArguments() {
+        arguments?.let {
+            characterId = it.getInt(BundleConstants.CHARACTER_ID)
+            imagePath = it.getString(BundleConstants.IMAGE_PATH)
+            characterName = it.getString(BundleConstants.CHARACTER_NAME)
+            characterDescription = it.getString(BundleConstants.CHARACTER_DESCRIPTION)
+            urlDetail = it.getString(BundleConstants.URL_DETAIL)
+        }
+    }
+
+    private fun setupScreenContent() {
         character_name.text = characterName
         Picasso.get().load(imagePath).into(default_character_image)
         character_description.text = characterDescription

@@ -38,7 +38,7 @@ class HomeAdapter(
             itemView.setOnClickListener {
                 clickListener(
                     marvelHeroDTO.id,
-                    marvelHeroDTO.imagePath + GeneralConstants.THUMBNAIL_FULL_SIZE,
+                    marvelHeroDTO.imagePath + GeneralConstants.THUMBNAIL_IMAGE_TYPE,
                     marvelHeroDTO.name,
                     marvelHeroDTO.description,
                     marvelHeroDTO.urlDetail

@@ -6,11 +6,18 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black"
         android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/default_character_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha=".30"
+            tools:src="@drawable/character_thumbnail_test" />
 
         <TextView
             android:id="@+id/character_name"
@@ -22,71 +29,101 @@
             android:textSize="48sp"
             tools:text="Abomination" />
 
-        <ImageView
-            android:id="@+id/default_character_image"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minWidth="300sp"
-            android:minHeight="300sp" />
-
-        <TextView
-            android:id="@+id/character_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20sp"
-            android:fontFamily="@font/gudea"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="22sp"
-            tools:text="Formerly known as Emil Blonsky, a spy of Soviet Yugoslavian origin working for the KGB, the Abomination gained his powers after receiving a dose of gamma radiation similar to that which transformed Bruce Banner into the incredible Hulk." />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/comics_button"
+                android:id="@+id/materialButton"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/archivo_black"
                 android:text="@string/comics"
-                android:textColor="@color/white"
+                android:textColor="@color/red"
+                android:textSize="15sp"
+                app:icon="@drawable/ic_comic"
+                app:iconGravity="top"
+                app:iconTint="@color/red"
+                app:layout_constraintBottom_toTopOf="@+id/character_description"
+                app:layout_constraintEnd_toStartOf="@+id/materialButton2"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:strokeColor="@color/red" />
+                app:strokeWidth="0dp" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/comics_events"
-                android:layout_width="0dp"
+                android:id="@+id/materialButton2"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/events"
-                android:textColor="@color/white"
-                app:layout_constraintEnd_toEndOf="@+id/comics_button"
-                app:layout_constraintStart_toStartOf="@+id/comics_button"
-                app:layout_constraintTop_toBottomOf="@id/comics_button"
-                app:strokeColor="@color/red" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/comics_stories"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="60dp"
-                android:text="@string/stories"
-                android:textColor="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:strokeColor="@color/red" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/comics_series"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/archivo_black"
                 android:text="@string/series"
+                android:textColor="@color/red"
+                android:textSize="15sp"
+                app:icon="@drawable/ic_series"
+                app:iconGravity="top"
+                app:iconTint="@color/red"
+                app:layout_constraintBottom_toTopOf="@+id/character_description"
+                app:layout_constraintEnd_toStartOf="@+id/materialButton3"
+                app:layout_constraintStart_toEndOf="@+id/materialButton"
+                app:strokeWidth="0dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/materialButton3"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/archivo_black"
+                android:text="@string/stories"
+                android:textColor="@color/red"
+                android:textSize="15sp"
+                app:icon="@drawable/icon_stories"
+                app:iconGravity="top"
+                app:iconTint="@color/red"
+                app:layout_constraintBottom_toTopOf="@+id/character_description"
+                app:layout_constraintEnd_toStartOf="@+id/materialButton4"
+                app:layout_constraintStart_toEndOf="@+id/materialButton2"
+                app:strokeWidth="0dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/materialButton4"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/archivo_black"
+                android:text="@string/events"
+                android:textColor="@color/red"
+                android:textSize="15sp"
+                app:icon="@drawable/icon_events"
+                app:iconGravity="top"
+                app:iconTint="@color/red"
+                app:layout_constraintBottom_toTopOf="@+id/character_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/materialButton3"
+                app:strokeWidth="0dp" />
+
+            <TextView
+                android:id="@+id/character_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_margin="20sp"
+                android:fontFamily="@font/archivo_bold"
+                android:textAlignment="center"
                 android:textColor="@color/white"
-                app:layout_constraintEnd_toEndOf="@+id/comics_stories"
-                app:layout_constraintStart_toStartOf="@+id/comics_stories"
-                app:layout_constraintTop_toBottomOf="@id/comics_stories"
-                app:strokeColor="@color/red" />
+                android:textSize="22sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="RtlCompat"
+                tools:text="Formerly known as Emil Blonsky, a spy of Soviet Yugoslavian origin working for the KGB, the Abomination
+             gained his powers after receiving a dose of gamma radiation similar to that which transformed Bruce Banner
+              into the incredible Hulk." />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
+    </FrameLayout>
 </ScrollView>

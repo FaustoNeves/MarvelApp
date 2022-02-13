@@ -16,7 +16,7 @@ class HomeViewModel @Inject constructor(
 ) :
     ViewModel() {
 
-    val fetchHeroesStatus = MutableLiveData(false)
+    val fetchHeroesStatus: MutableLiveData<Boolean> = MutableLiveData()
     val marvelHeroesDTOList = mutableListOf<MarvelHeroDTO>()
     val errorMessage = MutableLiveData<String>()
 
@@ -40,7 +40,7 @@ class HomeViewModel @Inject constructor(
                     }
                     fetchHeroesStatus.value = true
                     if (response.body.data!!.count == 0) {
-                        errorMessage.postValue("No results found for ")
+                        errorMessage.postValue("No results found for $searchText")
                     }
                 }
                 is NetworkResponse.ApiError -> {

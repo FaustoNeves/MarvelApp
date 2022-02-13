@@ -12,10 +12,10 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import br.com.fausto.marvelapplication.R
 import br.com.fausto.marvelapplication.data.dtos.MarvelHeroDTO
-import br.com.fausto.marvelapplication.ui.screens.categoryselection.fragment.CategorySelectionFragment
 import br.com.fausto.marvelapplication.ui.constants.BundleConstants
 import br.com.fausto.marvelapplication.ui.constants.GeneralConstants
 import br.com.fausto.marvelapplication.ui.constants.NavigationConstants
+import br.com.fausto.marvelapplication.ui.screens.categoryselection.fragment.CategorySelectionFragment
 import br.com.fausto.marvelapplication.ui.screens.home.adapter.HomeAdapter
 import br.com.fausto.marvelapplication.ui.screens.home.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,7 +44,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupObservers() {
-
         GlobalScope.launch(Dispatchers.Main) {
             viewModel.fetchHeroesStatus.observe(viewLifecycleOwner) {
                 setupRecyclerviewContent(viewModel.marvelHeroesDTOList)
@@ -56,7 +55,7 @@ class HomeFragment : Fragment() {
         viewModel.errorMessage.observe(viewLifecycleOwner) {
             progress_bar1.visibility = View.INVISIBLE
             error_message.visibility = View.VISIBLE
-            error_message.text = it + search_text_input_edit_text.text.toString()
+            error_message.text = it
         }
         viewModel.fetchHeroes(GeneralConstants.INITIAL_QUERY_PARAMETER_SEARCH)
     }
@@ -95,14 +94,14 @@ class HomeFragment : Fragment() {
         characterDescription: String,
         urlDetail: String
     ) {
-        val arguments = Bundle()
-        arguments.putInt(BundleConstants.CHARACTER_ID, characterId)
-        arguments.putString(BundleConstants.IMAGE_PATH, imagePath)
-        arguments.putString(BundleConstants.CHARACTER_NAME, characterName)
-        arguments.putString(BundleConstants.CHARACTER_DESCRIPTION, characterDescription)
-        arguments.putString(BundleConstants.URL_DETAIL, urlDetail)
         val categorySelectionFragment = CategorySelectionFragment()
-        categorySelectionFragment.arguments = arguments
+        categorySelectionFragment.arguments = Bundle().apply {
+            putInt(BundleConstants.CHARACTER_ID, characterId)
+            putString(BundleConstants.IMAGE_PATH, imagePath)
+            putString(BundleConstants.CHARACTER_NAME, characterName)
+            putString(BundleConstants.CHARACTER_DESCRIPTION, characterDescription)
+            putString(BundleConstants.URL_DETAIL, urlDetail)
+        }
         parentFragmentManager.beginTransaction()
             .addToBackStack(NavigationConstants.CATEGORY_SELECTION_FRAGMENT)
             .replace(R.id.fragment_container_view, categorySelectionFragment)
@@ -110,7 +109,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupOfficialWebsiteNavigation() {
-        marvel_website.setOnClickListener() {
+        marvel_website.setOnClickListener {
             startActivity(
                 Intent(Intent.ACTION_VIEW).setData(
                     Uri.parse(GeneralConstants.MARVEL_OFFICIAL_WEBSITE_CHARACTERS)
