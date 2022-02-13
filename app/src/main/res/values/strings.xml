@@ -1,9 +1,8 @@
 <resources>
     <string name="app_name">MarvelApplication</string>
     <string name="search">search</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="click_here_to_check_all_heroes_in_the_website">click here to check all heroes in the website</string>
+    <string name="click_here_to_check_all_characters_in_the_website">click here to check all characters in the website</string>
     <string name="comics">Comics</string>
     <string name="events">Events</string>
     <string name="series">Series</string>

@@ -12,13 +12,13 @@ class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_base)
-        initMarvelHeroesFragment()
+        initMarvelCharactersFragment()
     }
 
-    private fun initMarvelHeroesFragment() {
+    private fun initMarvelCharactersFragment() {
         supportFragmentManager.beginTransaction()
             .add(R.id.fragment_container_view, HomeFragment())
-            .addToBackStack(NavigationConstants.MARVEL_HEROES_FRAGMENT)
+            .addToBackStack(NavigationConstants.MARVEL_CHARACTERS_FRAGMENT)
             .commit()
     }
 

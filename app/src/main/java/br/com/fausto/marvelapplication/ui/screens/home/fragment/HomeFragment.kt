@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import br.com.fausto.marvelapplication.R
-import br.com.fausto.marvelapplication.data.dtos.MarvelHeroDTO
+import br.com.fausto.marvelapplication.data.dtos.MarvelCharacterDTO
 import br.com.fausto.marvelapplication.ui.constants.BundleConstants
 import br.com.fausto.marvelapplication.ui.constants.GeneralConstants
 import br.com.fausto.marvelapplication.ui.constants.NavigationConstants
@@ -45,8 +45,8 @@ class HomeFragment : Fragment() {
 
     private fun setupObservers() {
         GlobalScope.launch(Dispatchers.Main) {
-            viewModel.fetchHeroesStatus.observe(viewLifecycleOwner) {
-                setupRecyclerviewContent(viewModel.marvelHeroesDTOList)
+            viewModel.fetchCharactersStatus.observe(viewLifecycleOwner) {
+                setupRecyclerviewContent(viewModel.marvelCharactersDTOList)
                 progress_bar1.visibility = View.INVISIBLE
                 error_message.visibility = View.INVISIBLE
             }
@@ -57,14 +57,14 @@ class HomeFragment : Fragment() {
             error_message.visibility = View.VISIBLE
             error_message.text = it
         }
-        viewModel.fetchHeroes(GeneralConstants.INITIAL_QUERY_PARAMETER_SEARCH)
+        viewModel.fetchCharacters(GeneralConstants.INITIAL_QUERY_PARAMETER_SEARCH)
     }
 
-    private fun setupRecyclerviewContent(marvelHeroesDTOList: MutableList<MarvelHeroDTO>) {
-        marvel_heroes_rv.layoutManager = GridLayoutManager(context, 2)
-        val marvelHeroesAdapter =
+    private fun setupRecyclerviewContent(charactersDTOList: MutableList<MarvelCharacterDTO>) {
+        marvel_characters_rv.layoutManager = GridLayoutManager(context, 2)
+        val charactersAdapter =
             HomeAdapter(
-                marvelHeroesDTOList,
+                charactersDTOList,
                 requireContext()
             ) { characterId, imagePath, characterName, characterDescription, urlDetail ->
                 setupCategoriesScreenNavigation(
@@ -75,13 +75,13 @@ class HomeFragment : Fragment() {
                     urlDetail
                 )
             }
-        marvel_heroes_rv.adapter = marvelHeroesAdapter
+        marvel_characters_rv.adapter = charactersAdapter
     }
 
     private fun setupSearchListener() {
         search_text_input_edit_text.addTextChangedListener {
             if (it.toString().isNotEmpty()) {
-                viewModel.fetchHeroes(it.toString())
+                viewModel.fetchCharacters(it.toString())
                 progress_bar1.visibility = View.VISIBLE
             }
         }

@@ -26,7 +26,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/marvel_heroes_rv"
+        android:id="@+id/marvel_characters_rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/marvel_website"
@@ -39,9 +39,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminateTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/marvel_heroes_rv"
+        app:layout_constraintBottom_toBottomOf="@+id/marvel_characters_rv"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/marvel_heroes_rv"
+        app:layout_constraintStart_toStartOf="@+id/marvel_characters_rv"
         app:layout_constraintTop_toTopOf="@+id/search_text_input_layout" />
 
     <TextView
@@ -60,7 +60,7 @@
         android:id="@+id/marvel_website"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/click_here_to_check_all_heroes_in_the_website"
+        android:text="@string/click_here_to_check_all_characters_in_the_website"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
