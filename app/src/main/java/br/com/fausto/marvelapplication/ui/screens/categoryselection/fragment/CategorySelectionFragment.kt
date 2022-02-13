@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import br.com.fausto.marvelapplication.R
 import br.com.fausto.marvelapplication.ui.constants.BundleConstants
+import br.com.fausto.marvelapplication.ui.constants.NavigationConstants
+import br.com.fausto.marvelapplication.ui.screens.comics.fragment.ComicsScreenFragment
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_category_selection.*
 
-class CategorySelectionFragment : Fragment() {
+class CategorySelectionFragment : Fragment(), View.OnClickListener {
     private var characterId: Int? = null
     private var imagePath: String? = null
     private var characterName: String? = null
@@ -31,8 +33,8 @@ class CategorySelectionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupScreenContent()
+        setupClickListeners()
     }
 
     private fun retrieveArguments() {
@@ -46,8 +48,27 @@ class CategorySelectionFragment : Fragment() {
     }
 
     private fun setupScreenContent() {
+        comics_btn.setOnClickListener(this)
         character_name.text = characterName
         Picasso.get().load(imagePath).into(default_character_image)
         character_description.text = characterDescription
+    }
+
+    private fun setupClickListeners() {
+        main_constraint_layout.setOnClickListener(this)
+    }
+
+    override fun onClick(v: View?) {
+        when (v) {
+            comics_btn -> {
+                parentFragmentManager.beginTransaction()
+                    .addToBackStack(NavigationConstants.COMICS_SCREEN_FRAGMENT)
+                    .replace(
+                        R.id.fragment_container_view, ComicsScreenFragment.newInstance(
+                            characterId!!
+                        )
+                    ).commit()
+            }
+        }
     }
 }

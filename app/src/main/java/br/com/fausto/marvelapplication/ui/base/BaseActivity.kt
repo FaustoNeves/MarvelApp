@@ -6,6 +6,7 @@ import br.com.fausto.marvelapplication.R
 import br.com.fausto.marvelapplication.ui.constants.NavigationConstants
 import br.com.fausto.marvelapplication.ui.screens.home.fragment.HomeFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_base.*
 
 @AndroidEntryPoint
 class BaseActivity : AppCompatActivity() {

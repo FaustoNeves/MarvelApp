@@ -30,12 +30,13 @@
             tools:text="Abomination" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main_constraint_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="bottom">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/materialButton"
+                android:id="@+id/comics_btn"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -48,12 +49,12 @@
                 app:iconGravity="top"
                 app:iconTint="@color/red"
                 app:layout_constraintBottom_toTopOf="@+id/character_description"
-                app:layout_constraintEnd_toStartOf="@+id/materialButton2"
+                app:layout_constraintEnd_toStartOf="@+id/series_btn"
                 app:layout_constraintStart_toStartOf="parent"
                 app:strokeWidth="0dp" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/materialButton2"
+                android:id="@+id/series_btn"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -66,12 +67,12 @@
                 app:iconGravity="top"
                 app:iconTint="@color/red"
                 app:layout_constraintBottom_toTopOf="@+id/character_description"
-                app:layout_constraintEnd_toStartOf="@+id/materialButton3"
-                app:layout_constraintStart_toEndOf="@+id/materialButton"
+                app:layout_constraintEnd_toStartOf="@+id/stories_btn"
+                app:layout_constraintStart_toEndOf="@+id/comics_btn"
                 app:strokeWidth="0dp" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/materialButton3"
+                android:id="@+id/stories_btn"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -84,12 +85,12 @@
                 app:iconGravity="top"
                 app:iconTint="@color/red"
                 app:layout_constraintBottom_toTopOf="@+id/character_description"
-                app:layout_constraintEnd_toStartOf="@+id/materialButton4"
-                app:layout_constraintStart_toEndOf="@+id/materialButton2"
+                app:layout_constraintEnd_toStartOf="@+id/events_btn"
+                app:layout_constraintStart_toEndOf="@+id/series_btn"
                 app:strokeWidth="0dp" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/materialButton4"
+                android:id="@+id/events_btn"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -103,7 +104,7 @@
                 app:iconTint="@color/red"
                 app:layout_constraintBottom_toTopOf="@+id/character_description"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/materialButton3"
+                app:layout_constraintStart_toEndOf="@+id/stories_btn"
                 app:strokeWidth="0dp" />
 
             <TextView

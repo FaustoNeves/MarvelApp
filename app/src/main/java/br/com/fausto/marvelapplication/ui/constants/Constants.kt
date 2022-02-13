@@ -14,6 +14,7 @@ class NavigationConstants {
     companion object {
         const val MARVEL_CHARACTERS_FRAGMENT = "main_screen"
         const val CATEGORY_SELECTION_FRAGMENT = "selection_screen"
+        const val COMICS_SCREEN_FRAGMENT = "comics_screen"
     }
 }
 
