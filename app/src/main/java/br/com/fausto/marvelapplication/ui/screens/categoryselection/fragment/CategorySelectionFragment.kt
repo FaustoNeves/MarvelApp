@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import br.com.fausto.marvelapplication.R
 import br.com.fausto.marvelapplication.ui.constants.BundleConstants
 import br.com.fausto.marvelapplication.ui.constants.NavigationConstants
-import br.com.fausto.marvelapplication.ui.screens.comics.fragment.ComicsScreenFragment
+import br.com.fausto.marvelapplication.ui.screens.comics.fragment.ComicsFragment
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_category_selection.*
 
@@ -64,7 +64,7 @@ class CategorySelectionFragment : Fragment(), View.OnClickListener {
                 parentFragmentManager.beginTransaction()
                     .addToBackStack(NavigationConstants.COMICS_SCREEN_FRAGMENT)
                     .replace(
-                        R.id.fragment_container_view, ComicsScreenFragment.newInstance(
+                        R.id.fragment_container_view, ComicsFragment.newInstance(
                             characterId!!
                         )
                     ).commit()

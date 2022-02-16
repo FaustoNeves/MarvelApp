@@ -15,7 +15,8 @@
         app:hintTextColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:startIconDrawable="@drawable/ic_baseline_search_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/search_text_input_edit_text"
@@ -26,7 +27,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/marvel_characters_rv"
+        android:id="@+id/characters_rv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/marvel_website"
@@ -39,9 +40,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminateTint="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/marvel_characters_rv"
+        app:layout_constraintBottom_toBottomOf="@+id/characters_rv"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/marvel_characters_rv"
+        app:layout_constraintStart_toStartOf="@+id/characters_rv"
         app:layout_constraintTop_toTopOf="@+id/search_text_input_layout" />
 
     <TextView

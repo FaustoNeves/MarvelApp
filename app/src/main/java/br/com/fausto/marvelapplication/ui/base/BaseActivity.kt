@@ -6,20 +6,19 @@ import br.com.fausto.marvelapplication.R
 import br.com.fausto.marvelapplication.ui.constants.NavigationConstants
 import br.com.fausto.marvelapplication.ui.screens.home.fragment.HomeFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_base.*
 
 @AndroidEntryPoint
 class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_base)
-        initMarvelCharactersFragment()
+        initCharactersFragment()
     }
 
-    private fun initMarvelCharactersFragment() {
+    private fun initCharactersFragment() {
         supportFragmentManager.beginTransaction()
             .add(R.id.fragment_container_view, HomeFragment())
-            .addToBackStack(NavigationConstants.MARVEL_CHARACTERS_FRAGMENT)
+            .addToBackStack(NavigationConstants.CHARACTERS_FRAGMENT)
             .commit()
     }
 

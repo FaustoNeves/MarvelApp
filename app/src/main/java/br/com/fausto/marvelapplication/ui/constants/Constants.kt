@@ -12,7 +12,7 @@ class GeneralConstants {
 
 class NavigationConstants {
     companion object {
-        const val MARVEL_CHARACTERS_FRAGMENT = "main_screen"
+        const val CHARACTERS_FRAGMENT = "main_screen"
         const val CATEGORY_SELECTION_FRAGMENT = "selection_screen"
         const val COMICS_SCREEN_FRAGMENT = "comics_screen"
     }
@@ -25,5 +25,17 @@ class BundleConstants {
         const val IMAGE_PATH = "imagePath"
         const val CHARACTER_NAME = "characterName"
         const val CHARACTER_DESCRIPTION = "characterDescription"
+    }
+
+}
+
+class ApiConstants {
+    companion object {
+        const val IMAGE_NOT_AVAILABLE = "image_not_available"
+        const val NO_DESCRIPTION_AVAILABLE = "No description available"
+        const val NO_RESULTS_FOUND = "No results found"
+        const val EMPTY_SEARCH_FIELD = "Empty search field"
+        const val CONNECTION_TIMEOUT = "Check your internet connection"
+        const val UNAUTHORIZED_REQUEST = "Unauthorized request"
     }
 }

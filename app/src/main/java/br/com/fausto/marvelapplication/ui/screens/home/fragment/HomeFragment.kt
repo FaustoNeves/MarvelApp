@@ -46,7 +46,7 @@ class HomeFragment : Fragment() {
     private fun setupObservers() {
         GlobalScope.launch(Dispatchers.Main) {
             viewModel.fetchCharactersStatus.observe(viewLifecycleOwner) {
-                setupRecyclerviewContent(viewModel.marvelCharactersDTOList)
+                setupRecyclerviewContent(viewModel.charactersDTOList)
                 progress_bar1.visibility = View.INVISIBLE
                 error_message.visibility = View.INVISIBLE
             }
@@ -61,7 +61,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupRecyclerviewContent(charactersDTOList: MutableList<MarvelCharacterDTO>) {
-        marvel_characters_rv.layoutManager = GridLayoutManager(context, 2)
+        characters_rv.layoutManager = GridLayoutManager(context, 2)
         val charactersAdapter =
             HomeAdapter(
                 charactersDTOList,
@@ -75,7 +75,7 @@ class HomeFragment : Fragment() {
                     urlDetail
                 )
             }
-        marvel_characters_rv.adapter = charactersAdapter
+        characters_rv.adapter = charactersAdapter
     }
 
     private fun setupSearchListener() {
