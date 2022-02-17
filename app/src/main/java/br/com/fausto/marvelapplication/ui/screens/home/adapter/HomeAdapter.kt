@@ -45,7 +45,11 @@ class HomeAdapter(
                 )
             }
             Picasso.get()
-                .load(marvelCharacterDTO.imagePath + GeneralConstants.CHARACTER_THUMBNAIL_SIZE + GeneralConstants.THUMBNAIL_IMAGE_TYPE)
+                .load(
+                    marvelCharacterDTO.imagePath
+                            + GeneralConstants.THUMBNAIL_SIZE_PORTRAIT_UNCANNY
+                            + GeneralConstants.THUMBNAIL_IMAGE_TYPE
+                )
                 .into(itemView.character_image)
         }
     }

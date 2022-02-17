@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="12sp"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/category_thumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="4sp"
+        tools:src="@drawable/comic_thumbnail_test" />
+
+    <TextView
+        android:id="@+id/category_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_red_background"
+        android:fontFamily="@font/bebas_neue_regular"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        tools:text="Official Handbook of the Marvel Universe (2004) #11 (X-MEN - AGE OF APOCALYPSE)" />
+
+</LinearLayout>

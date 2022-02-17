@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import br.com.fausto.marvelapplication.R
 import br.com.fausto.marvelapplication.ui.constants.BundleConstants
+import br.com.fausto.marvelapplication.ui.constants.CategoriesConstants
 import br.com.fausto.marvelapplication.ui.constants.NavigationConstants
-import br.com.fausto.marvelapplication.ui.screens.comics.fragment.ComicsFragment
+import br.com.fausto.marvelapplication.ui.screens.categories.fragment.CategoriesFragment
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_category_selection.*
 
@@ -49,6 +50,7 @@ class CategorySelectionFragment : Fragment(), View.OnClickListener {
 
     private fun setupScreenContent() {
         comics_btn.setOnClickListener(this)
+        series_btn.setOnClickListener(this)
         character_name.text = characterName
         Picasso.get().load(imagePath).into(default_character_image)
         character_description.text = characterDescription
@@ -59,16 +61,22 @@ class CategorySelectionFragment : Fragment(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
+        var selectedCategory = ""
         when (v) {
-            comics_btn -> {
-                parentFragmentManager.beginTransaction()
-                    .addToBackStack(NavigationConstants.COMICS_SCREEN_FRAGMENT)
-                    .replace(
-                        R.id.fragment_container_view, ComicsFragment.newInstance(
-                            characterId!!
-                        )
-                    ).commit()
-            }
+            comics_btn -> selectedCategory = CategoriesConstants.COMICS
+            series_btn -> selectedCategory = CategoriesConstants.SERIES
         }
+        selectCategoryScreen(selectedCategory)
+    }
+
+    private fun selectCategoryScreen(selectedCategory: String) {
+        parentFragmentManager.beginTransaction()
+            .addToBackStack(NavigationConstants.CATEGORY_FRAGMENT)
+            .replace(
+                R.id.fragment_container_view, CategoriesFragment.newInstance(
+                    characterId!!,
+                    selectedCategory
+                )
+            ).commit()
     }
 }

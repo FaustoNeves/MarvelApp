@@ -3,7 +3,7 @@ package br.com.fausto.marvelapplication.ui.constants
 class GeneralConstants {
     companion object {
         const val MARVEL_OFFICIAL_WEBSITE_CHARACTERS = "https://www.marvel.com/characters"
-        const val CHARACTER_THUMBNAIL_SIZE = "/portrait_uncanny"
+        const val THUMBNAIL_SIZE_PORTRAIT_UNCANNY = "/portrait_uncanny"
         const val INITIAL_QUERY_PARAMETER_SEARCH = "A"
         const val THUMBNAIL_IMAGE_TYPE = ".jpg"
         const val THUMBNAIL_FULL_SIZE = "/detail.jpg"
@@ -14,12 +14,13 @@ class NavigationConstants {
     companion object {
         const val CHARACTERS_FRAGMENT = "main_screen"
         const val CATEGORY_SELECTION_FRAGMENT = "selection_screen"
-        const val COMICS_SCREEN_FRAGMENT = "comics_screen"
+        const val CATEGORY_FRAGMENT = "comics_screen"
     }
 }
 
 class BundleConstants {
     companion object {
+        const val SELECTED_CATEGORY = "selected_category"
         const val URL_DETAIL = "urlDetail"
         const val CHARACTER_ID = "characterId"
         const val IMAGE_PATH = "imagePath"
@@ -37,5 +38,16 @@ class ApiConstants {
         const val EMPTY_SEARCH_FIELD = "Empty search field"
         const val CONNECTION_TIMEOUT = "Check your internet connection"
         const val UNAUTHORIZED_REQUEST = "Unauthorized request"
+    }
+
+}
+
+class CategoriesConstants {
+    companion object {
+        const val COMICS = "Comics"
+        const val EVENTS = "Events"
+        const val SERIES = "Series"
+        const val STORIES = "Stories"
+        const val CATEGORY_NOT_FOUND = "Category not found"
     }
 }
