@@ -6,6 +6,7 @@
 - [Marvel API](https://developer.marvel.com/)
 - [Viewmodel overview](https://developer.android.com/topic/libraries/architecture/viewmodel)
 - [Retrofit CallAdapter for Coroutines to handle response as states](https://proandroiddev.com/create-retrofit-calladapter-for-coroutines-to-handle-response-as-states-c102440de37a)
+- [Dinamic list with RecyclerView](https://developer.android.com/guide/topics/ui/layout/recyclerview?hl=pt-br)
 - [Hilt DI](https://developer.android.com/training/dependency-injection/hilt-android?hl=pt-br)
 - [Retrofit](https://square.github.io/retrofit/)
 - [Android architecture guide](https://developer.android.com/jetpack/guide)
