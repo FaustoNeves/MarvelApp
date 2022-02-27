@@ -1,8 +1,10 @@
 package br.com.fausto.marvelapplication.ui.screens.home.fragment
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,6 +38,11 @@ class HomeFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        clearCharacterPosition()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupObservers()
@@ -57,32 +64,35 @@ class HomeFragment : Fragment() {
             error_message.visibility = View.VISIBLE
             error_message.text = it
         }
-        viewModel.fetchCharacters(GeneralConstants.INITIAL_QUERY_PARAMETER_SEARCH)
+        if (getCharacterPosition() == BundleConstants.NO_CHARACTER_IN_POSITION)
+            viewModel.fetchCharacters(GeneralConstants.INITIAL_QUERY_PARAMETER_SEARCH)
     }
 
     private fun setupRecyclerviewContent(charactersDTOList: MutableList<MarvelCharacterDTO>) {
         characters_rv.layoutManager = GridLayoutManager(context, 2)
-        val charactersAdapter =
+        val homeAdapter =
             HomeAdapter(
                 charactersDTOList,
                 requireContext()
-            ) { characterId, imagePath, characterName, characterDescription, urlDetail ->
+            ) { characterId, imagePath, characterName, characterDescription, urlDetail, itemPosition ->
                 setupCategoriesScreenNavigation(
                     characterId,
                     imagePath,
                     characterName,
                     characterDescription,
-                    urlDetail
+                    urlDetail,
+                    itemPosition
                 )
             }
-        characters_rv.adapter = charactersAdapter
+        characters_rv.adapter = homeAdapter
     }
 
     private fun setupSearchListener() {
         search_text_input_edit_text.addTextChangedListener {
             if (it.toString().isNotEmpty()) {
-                viewModel.fetchCharacters(it.toString())
                 progress_bar1.visibility = View.VISIBLE
+                writePositionInPreferences(BundleConstants.NO_CHARACTER_IN_POSITION)
+                viewModel.fetchCharacters(it.toString())
             }
         }
     }
@@ -92,7 +102,8 @@ class HomeFragment : Fragment() {
         imagePath: String,
         characterName: String,
         characterDescription: String,
-        urlDetail: String
+        urlDetail: String,
+        itemPosition: Int
     ) {
         val categorySelectionFragment = CategorySelectionFragment()
         categorySelectionFragment.arguments = Bundle().apply {
@@ -101,6 +112,8 @@ class HomeFragment : Fragment() {
             putString(BundleConstants.CHARACTER_NAME, characterName)
             putString(BundleConstants.CHARACTER_DESCRIPTION, characterDescription)
             putString(BundleConstants.URL_DETAIL, urlDetail)
+            writePositionInPreferences(itemPosition)
+            clearSearchText()
         }
         parentFragmentManager.beginTransaction()
             .addToBackStack(NavigationConstants.CATEGORY_SELECTION_FRAGMENT)
@@ -116,5 +129,34 @@ class HomeFragment : Fragment() {
                 )
             )
         }
+    }
+
+    private fun getCharacterPosition(): Int {
+        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE)
+        return sharedPref!!.getInt(
+            BundleConstants.CHARACTER_POSITION,
+            BundleConstants.NO_CHARACTER_IN_POSITION
+        )
+    }
+
+    private fun writePositionInPreferences(characterPosition: Int) {
+        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
+        with(sharedPref.edit()) {
+            putInt(BundleConstants.CHARACTER_POSITION, characterPosition)
+            apply()
+        }
+    }
+
+    private fun clearCharacterPosition() {
+        activity?.getPreferences(Context.MODE_PRIVATE) ?: return
+        val sharedPref = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
+        with(sharedPref.edit()) {
+            putInt(BundleConstants.CHARACTER_POSITION, BundleConstants.NO_CHARACTER_IN_POSITION)
+            apply()
+        }
+    }
+
+    private fun clearSearchText() {
+        search_text_input_edit_text.text!!.clear()
     }
 }

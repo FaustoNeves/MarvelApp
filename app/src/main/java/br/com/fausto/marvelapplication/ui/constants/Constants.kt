@@ -6,7 +6,6 @@ class GeneralConstants {
         const val THUMBNAIL_SIZE_PORTRAIT_UNCANNY = "/portrait_uncanny"
         const val INITIAL_QUERY_PARAMETER_SEARCH = "A"
         const val THUMBNAIL_IMAGE_TYPE = ".jpg"
-        const val THUMBNAIL_FULL_SIZE = "/detail.jpg"
     }
 }
 
@@ -20,14 +19,15 @@ class NavigationConstants {
 
 class BundleConstants {
     companion object {
-        const val SELECTED_CATEGORY = "selected_category"
+        const val SELECTED_CATEGORY = "selectedCategory"
         const val URL_DETAIL = "urlDetail"
         const val CHARACTER_ID = "characterId"
         const val IMAGE_PATH = "imagePath"
         const val CHARACTER_NAME = "characterName"
         const val CHARACTER_DESCRIPTION = "characterDescription"
+        const val CHARACTER_POSITION = "characterPosition"
+        const val NO_CHARACTER_IN_POSITION = -1
     }
-
 }
 
 class ApiConstants {
@@ -39,15 +39,11 @@ class ApiConstants {
         const val CONNECTION_TIMEOUT = "Check your internet connection"
         const val UNAUTHORIZED_REQUEST = "Unauthorized request"
     }
-
 }
 
 class CategoriesConstants {
     companion object {
         const val COMICS = "Comics"
-        const val EVENTS = "Events"
         const val SERIES = "Series"
-        const val STORIES = "Stories"
-        const val CATEGORY_NOT_FOUND = "Category not found"
     }
 }

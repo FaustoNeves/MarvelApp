@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.list_item_character.view.*
 class HomeAdapter(
     private val charactersList: List<MarvelCharacterDTO>,
     private val context: Context,
-    private val clickListener: ((Int, String, String, String, String) -> Unit)
+    private val clickListener: ((Int, String, String, String, String, Int) -> Unit)
 
 ) : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
@@ -25,14 +25,14 @@ class HomeAdapter(
     }
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
-        holder.bind(charactersList[position])
+        holder.bind(charactersList[position], position)
     }
 
     override fun getItemCount() =
         charactersList.size
 
     inner class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(marvelCharacterDTO: MarvelCharacterDTO) {
+        fun bind(marvelCharacterDTO: MarvelCharacterDTO, itemPosition: Int) {
 
             itemView.character_name.text = marvelCharacterDTO.name
             itemView.setOnClickListener {
@@ -41,7 +41,8 @@ class HomeAdapter(
                     marvelCharacterDTO.imagePath + GeneralConstants.THUMBNAIL_IMAGE_TYPE,
                     marvelCharacterDTO.name,
                     marvelCharacterDTO.description,
-                    marvelCharacterDTO.urlDetail
+                    marvelCharacterDTO.urlDetail,
+                    itemPosition
                 )
             }
             Picasso.get()
